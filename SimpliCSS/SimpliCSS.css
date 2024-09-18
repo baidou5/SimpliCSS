@@ -1,4 +1,4 @@
-/* الألوان الأساسية */
+/* Primary colors */
 :root {
   --blue: #3498db;
   --green: #2ecc71;
@@ -11,7 +11,7 @@
   --black: #000000;
 }
 
-/* نصوص الألوان */
+/* Color Texts */
 .text-blue { color: var(--blue); }
 .text-green { color: var(--green); }
 .text-red { color: var(--red); }
@@ -20,7 +20,7 @@
 .text-light { color: var(--gray-light); }
 .text-dark { color: var(--gray-dark); }
 
-/* ألوان الخلفيات */
+/* Background colors */
 .bg-blue { background-color: var(--blue); }
 .bg-green { background-color: var(--green); }
 .bg-red { background-color: var(--red); }
@@ -29,20 +29,20 @@
 .bg-light { background-color: var(--gray-light); }
 .bg-dark { background-color: var(--gray-dark); }
 
-/* الحواف (Border Radius) */
+/* Border Radius */
 .rounded-sm { border-radius: 4px; }
 .rounded-md { border-radius: 8px; }
 .rounded-lg { border-radius: 12px; }
 .rounded-full { border-radius: 9999px; }
 
-/* العرض والارتفاع */
+/* width and height */
 .w-full { width: 100%; }
 .w-half { width: 50%; }
 .w-quarter { width: 25%; }
 .h-full { height: 100%; }
 .h-half { height: 50%; }
 
-/* التباعد (Spacing) */
+/* Spacing */
 .m-0 { margin: 0; }
 .m-1 { margin: 8px; }
 .m-2 { margin: 16px; }
@@ -70,7 +70,7 @@
 .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
 .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
 
-/* النصوص (Typography) */
+/* Typograph */
 .text-xs { font-size: 12px; }
 .text-sm { font-size: 14px; }
 .text-base { font-size: 16px; }
@@ -81,16 +81,16 @@
 .text-left { text-align: left; }
 .text-right { text-align: right; }
 
-/* التحويل (Transform) */
+/* Transform */
 .scale:hover { transform: scale(1.05); transition: transform 0.2s ease-in-out; }
 .rotate-45 { transform: rotate(45deg); }
 
-/* الزوايا (Shadows) */
+/* Shadows */
 .shadow-sm { box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1); }
 .shadow-md { box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); }
 .shadow-lg { box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.2); }
 
-/* استجابة للشاشات */
+/* Respond to screens */
 @media (max-width: 640px) {
   .sm\:text-lg { font-size: 18px; }
   .sm\:w-full { width: 100%; }
