@@ -1,9 +1,10 @@
 # baidou
 SimpliCSS 
-### README.md (بالإنجليزية)
+### README.md 
 
-# SimpliCSS
-
+## SimpliCSS
+ - Created by Abdellah Baidou ( +212 661-176711 - baidou.abd@gmail.com)
+ - 
 **SimpliCSS** is a lightweight and simplified utility-first CSS framework designed to make building modern, responsive websites easier. Inspired by frameworks like Tailwind CSS, SimpliCSS offers a simpler and more intuitive naming system, while still providing flexibility and power for creating beautiful UI and UX designs.
 
 ## Features
