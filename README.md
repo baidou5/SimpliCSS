@@ -5,11 +5,13 @@
 
 ## SimpliCSS
 <p align="center">
-**Abdellah Baidou**
-Contact: **+212 661-176711**
-Email: **baidou.abd@gmail.com**
+   A lightweight utility-first CSS framework for quickly crafting responsive and modern user interfaces.
 </p>
-
+`
+Abdellah Baidou
+Contact: +212 661-176711
+Email: baidou.abd@gmail.com
+`
 **SimpliCSS** is a lightweight, utility-first CSS framework designed to simplify the development of modern, responsive websites. It aims to be an easy-to-use alternative to more complex frameworks, offering a streamlined and intuitive approach to styling. While inspired by popular frameworks, SimpliCSS focuses on simplicity, efficiency, and flexibility.
 
 ## Key Features
