@@ -40,7 +40,7 @@ To include SimpliCSS via CDN, add the following link to your HTML's `<head>` sec
 
    ```bash
    cd SimpliCSS
-  ```
+   ```
 
 3. Install dependencies:
 
@@ -57,8 +57,15 @@ To include SimpliCSS via CDN, add the following link to your HTML's `<head>` sec
 5. Include the `SimpliCSS.css` file in your project:
 
    ```html
-   <link rel="stylesheet" href="path/to/SimpliCSS.css">
+   <link rel="stylesheet" href="node_modules/simpli-css/dist/SimpliCSS.css">
    ```
+or  Include SimpliCSS in Your Project:
+   You can include SimpliCSS in your project by importing it into your CSS file:
+   ```html
+   @import 'node_modules/simpli-css/dist/SimpliCSS.css';
+   ```
+
+
 
 ## Usage
 
