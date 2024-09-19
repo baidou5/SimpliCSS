@@ -4,9 +4,11 @@
 ![SimpliCSS Logo](https://raw.githubusercontent.com/baidou5/SimpliCSS/main/bgs.jpg)
 
 ## SimpliCSS
+<center> 
 **Abdellah Baidou**
 Contact: **+212 661-176711**
 Email: **baidou.abd@gmail.com**
+</center>
 
 **SimpliCSS** is a lightweight, utility-first CSS framework designed to simplify the development of modern, responsive websites. It aims to be an easy-to-use alternative to more complex frameworks, offering a streamlined and intuitive approach to styling. While inspired by popular frameworks, SimpliCSS focuses on simplicity, efficiency, and flexibility.
 
