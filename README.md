@@ -68,12 +68,54 @@ or
 ```css
 @import 'node_modules/simpli-css/dist/SimpliCSS.css';
 ```
+## Using CDN
+You can include SimpliCSS either through a CDN or by installing it locally in your project.
+To include `SimpliCSS` via CDN, simply add the following link to the `<head>` section of your HTML document:
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/baidou5/SimpliCSS@main/src/SimpliCSS.css">
+```
+### Integration
+# Laravel Integration
+To integrate SimpliCSS into a Laravel project:
+```html
+cp path/to/SimpliCSS/src/SimpliCSS.css public/css/
+```
+ 
+# or Using CDN
+Add this link to your Blade template (e.g., resources/views/layouts/app.blade.php):
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/baidou5/SimpliCSS@main/src/SimpliCSS.css">
+```
+Then, reference the file in your Blade template:
+```html
+<link rel="stylesheet" href="{{ asset('css/SimpliCSS.css') }}">
+```
+# Integration with CodeIgniter
+To integrate SimpliCSS into a CodeIgniter project:
 
-## Usage
+Add SimpliCSS:
+
+Using CDN:
+
+Add the following line to your header file (e.g., `application/views/layouts/header.php`):
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/baidou5/SimpliCSS@main/SimpliCSS/SimpliCSS.css">
+```
+# Local Installation:
+
+Copy the SimpliCSS.css file to `public/css/ or assets/css/`:
+```html
+cp path/to/SimpliCSS/src/SimpliCSS.css public/css/
+```
+Include it in your view file:
+```html
+<link rel="stylesheet" href="<?= base_url('css/SimpliCSS.css') ?>">
+```
+### Usage
 
 SimpliCSS utilizes simple utility classes to style your elements. Apply these classes to your HTML elements to quickly create layouts and style your content.
 
-### Example Usage
+## Example Usage
 
 ```html
 <div class="bg-blue text-white p-2 rounded-md shadow-md">
