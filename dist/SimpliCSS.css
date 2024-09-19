@@ -1,0 +1,100 @@
+
+/* Primary colors */
+:root {
+  --blue: #3498db;
+  --green: #2ecc71;
+  --red: #e74c3c;
+  --yellow: #f39c12;
+  --cyan: #1abc9c;
+  --gray-light: #f4f4f4;
+  --gray-dark: #2c3e50;
+  --white: #ffffff;
+  --black: #000000;
+
+  /* Flat  Colors */
+  --flat-turquoise: #1abc9c;
+  --flat-emerald: #2ecc71;
+  --flat-peter-river: #3498db;
+  --flat-amethyst: #9b59b6;
+  --flat-wet-asphalt: #34495e;
+  --flat-sun-flower: #f1c40f;
+  --flat-carrot: #e67e22;
+  --flat-alizarin: #e74c3c;
+  --flat-clouds: #ecf0f1;
+  --flat-concrete: #95a5a6;
+}
+
+/* Typography */
+.font-sans { font-family: sans-serif; }
+.font-serif { font-family: serif; }
+.font-mono { font-family: monospace; }
+
+.truncate { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Color Texts */
+.text-blue { color: var(--blue); }
+.text-dark { color: var(--gray-dark); }
+
+
+/* Flat UI Color Texts */
+.text-flat-turquoise { color: var(--flat-turquoise); }
+.text-flat-emerald { color: var(--flat-emerald); }
+.text-flat-peter-river { color: var(--flat-peter-river); }
+.text-flat-amethyst { color: var(--flat-amethyst); }
+.text-flat-wet-asphalt { color: var(--flat-wet-asphalt); }
+
+/* Background colors */
+.bg-green { background-color: var(--green); }
+.bg-light { background-color: var(--gray-light); }
+
+/* Flat UI Background Colors */
+
+/* Border Radius */
+
+/* Width and Height */
+
+/* Width and Height */
+
+/* Spacing */
+.m-2 { margin: 16px; }
+.p-3 { padding: 24px; }
+
+/* Flexbox */
+.flex { display: flex; }
+.justify-center { justify-content: center; }
+.items-center { align-items: center; }
+
+/* Flexbox Enhancements */
+
+/* Grid Enhancements */
+.grid-cols-6 { grid-template-columns: repeat(6, 1fr); }
+
+/* Gap in grid and flex */
+
+
+/* Grid */
+.grid { display: grid; }
+
+/* Typography */
+
+/* Hover, Focus, Active States */
+
+/* Transform */
+.scale:hover { transform: scale(1.05); transition: transform 0.2s ease-in-out; }
+/* Transitions and Animations */
+.transition { transition: all 0.3s ease-in-out; }
+
+/* Shadows */
+/* Display */
+.hidden { display: none; }
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+
+/* Visibility */
+.visible { visibility: visible; }
+.invisible { visibility: hidden; }
+
+/* Responsive Widths */
+
+/* Media Queries */

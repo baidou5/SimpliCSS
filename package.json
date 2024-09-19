@@ -1,0 +1,19 @@
+{
+  "name": "SimpliCSS",
+  "version": "1.0.3",
+  "description": "SimpliCSS is a lightweight, utility-first CSS framework designed to simplify the development of modern, responsive websites. It aims to be an easy-to-use alternative to more complex frameworks, offering a streamlined and more intuitive approach to styling. While inspired by popular frameworks, SimpliCSS focuses on simplicity, efficiency, and flexibility.",
+  "main": "index.js",
+  "scripts": {
+    "build:css": "postcss src/SimpliCSS.css -o dist/SimpliCSS.css",
+    "watch:css": "postcss src/SimpliCSS.css -o dist/SimpliCSS.css --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^6.0.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0"
+  },
+  "author": "Abdellah Baidou",
+  "license": "MIT License"
+}

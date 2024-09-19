@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimpliCSS Documentation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/baidou5/SimpliCSS@main/SimpliCSS/SimpliCSS.css">
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 16px;
+        }
+        .section {
+            margin-bottom: 32px;
+        }
+        .section-title {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .code-block {
+            background-color: var(--gray-light);
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body class="bg-light text-dark font-sans">
+    <div class="container">
+        <h1 class="text-blue">SimpliCSS Documentation</h1>
+        <p>SimpliCSS is a lightweight, utility-first CSS framework created by Abdellah Baidou. It simplifies the development of modern, responsive websites.</p>
+
+        <div class="section">
+            <h2 class="section-title text-flat-turquoise">Getting Started</h2>
+            <p>To start using SimpliCSS, include the following CDN link in the <code><head></code> section of your HTML file:</p>
+            <div class="code-block">
+                <code><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/baidou5/SimpliCSS@main/SimpliCSS/SimpliCSS.css"></code>
+            </div>
+            <p>Alternatively, you can clone the repository from GitHub:</p>
+            <div class="code-block">
+                <code>git clone https://github.com/baidou5/SimpliCSS.git</code>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title text-flat-emerald">Key Features</h2>
+            <ul>
+                <li>Utility-First Approach: Use concise utility classes to build layouts quickly without writing custom CSS.</li>
+                <li>Simplified Class Names: Designed to be intuitive and easy to remember, making development faster and more efficient.</li>
+                <li>Responsive Design: Built-in responsive utilities that ensure your websites adapt beautifully to different screen sizes, without extra effort.</li>
+                <li>Lightweight Framework: Only includes essential features, allowing you to keep your projects fast and lean, without unnecessary bloat.</li>
+                <li>Customizability: Easily extend and modify the framework to fit your specific project requirements. The <code>simpliCSS.css</code> file is structured for easy customization.</li>
+                <li>Flexbox and Grid Support: Built-in utilities for modern layouts using Flexbox and Grid, simplifying complex layout designs.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title text-flat-peter-river">Usage</h2>
+            <h3>Colors</h3>
+            <div class="code-block">
+                <code>
+                    <div class="text-blue">This text is blue.</div><br>
+                    <div class="bg-green">This background is green.</div>
+                </code>
+            </div>
+
+            <h3>Typography</h3>
+            <div class="code-block">
+                <code>
+                    <p class="font-sans">This is sans-serif font.</p><br>
+                    <p class="font-serif">This is serif font.</p><br>
+                    <p class="font-mono">This is monospace font.</p>
+                </code>
+            </div>
+
+            <h3>Spacing</h3>
+            <div class="code-block">
+                <code>
+                    <div class="m-2 p-3">This div has margin and padding.</div>
+                </code>
+            </div>
+
+            <h3>Flexbox</h3>
+            <div class="code-block">
+                <code>
+                    <div class="flex justify-center items-center"><br>
+                      <div>Centered content</div><br>
+                    </div>
+                </code>
+            </div>
+
+            <h3>Grid</h3>
+            <div class="code-block">
+                <code>
+                    <div class="grid grid-cols-6"><br>
+                      <div>Column 1</div><br>
+                      <div>Column 2</div><br>
+                      <div>Column 3</div><br>
+                      <div>Column 4</div><br>
+                      <div>Column 5</div><br>
+                      <div>Column 6</div><br>
+                    </div>
+                </code>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title text-flat-amethyst">Customization</h2>
+            <p>You can easily customize SimpliCSS by modifying the <code>simpliCSS.css</code> file. The file is structured to allow for easy changes to fit your specific project needs.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title text-flat-wet-asphalt">Conclusion</h2>
+            <p>SimpliCSS is designed to make web development faster and more efficient by providing a simple, intuitive, and flexible CSS framework. Whether you're building a small project or a large application, SimpliCSS can help you achieve your goals with minimal effort.</p>
+            <p>For more information and updates, visit the <a href="https://github.com/baidou5/SimpliCSS" class="text-blue">GitHub repository</a>.</p>
+        </div>
+    </div>
+</body>
+</html>
