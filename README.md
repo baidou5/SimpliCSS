@@ -28,7 +28,7 @@ To include SimpliCSS via CDN, add the following link to your HTML's `<head>` sec
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/baidou5/SimpliCSS@main/SimpliCSS/SimpliCSS.css">
-```
+
 
 ### Local Installation
 
