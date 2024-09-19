@@ -1,6 +1,4 @@
-Here's the updated `README.md` for your SimpliCSS framework, incorporating the changes and additional information:
 
-```markdown
 # SimpliCSS
 
 ![SimpliCSS Logo](https://raw.githubusercontent.com/baidou5/SimpliCSS/main/bgs.jpg)
@@ -28,7 +26,7 @@ To include SimpliCSS via CDN, add the following link to your HTML's `<head>` sec
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/baidou5/SimpliCSS@main/SimpliCSS/SimpliCSS.css">
-
+```
 
 ### Local Installation
 
@@ -42,7 +40,7 @@ To include SimpliCSS via CDN, add the following link to your HTML's `<head>` sec
 
    ```bash
    cd SimpliCSS
-   ```
+  ```
 
 3. Install dependencies:
 
