@@ -3,7 +3,8 @@
 
 ![SimpliCSS Logo](https://raw.githubusercontent.com/baidou5/SimpliCSS/main/bgs.jpg)
 
-Created by Abdellah Baidou  
+## Created by
+Abdellah Baidou
 Contact: +212 661-176711  
 Email: baidou.abd@gmail.com
 
