@@ -1,5 +1,5 @@
 
-# SimpliCSS
+## SimpliCSS
 
 ![SimpliCSS Logo](https://raw.githubusercontent.com/baidou5/SimpliCSS/main/bgs.jpg)
 
