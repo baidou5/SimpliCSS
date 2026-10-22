@@ -6,7 +6,8 @@
   "scripts": {
     "build:css": "postcss src/SimpliCSS.css -o dist/SimpliCSS.css",
     "watch:css": "postcss src/SimpliCSS.css -o dist/SimpliCSS.css --watch",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node --test tests/*.test.cjs",
+    "build": "npm run build:css"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
