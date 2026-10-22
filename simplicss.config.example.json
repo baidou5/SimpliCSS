@@ -1,0 +1,18 @@
+{
+  "content": [
+    "./index.html"
+  ],
+  "output": "dist/simplicss.generated.css",
+  "safelist": [
+    "hidden",
+    "md:flex-row"
+  ],
+  "theme": {
+    "colors": {
+      "brand": "#2563eb"
+    },
+    "spacing": {
+      "7": "1.75rem"
+    }
+  }
+}
