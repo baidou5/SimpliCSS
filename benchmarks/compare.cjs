@@ -43,7 +43,7 @@ const translations={
 };
 function mapped(html,framework){return html.replace(/class="([^"]*)"/g,(_,classes)=>'class="'+classes.split(/\s+/).map(c=>translations[c]?.[framework]||c).join(' ')+'"')}
 try{
- compare('Tailwind','@tailwindcss/cli','@tailwindcss/cli/dist/index.mjs',dir=>['-i',path.join(dir,'input.css'),'-o',path.join(dir,'out.css'),'-m'],dir=>path.join(dir,'out.css'),x=>mapped(x,'Tailwind'));
+ compare('Tailwind','@tailwindcss/cli','@tailwindcss/cli',dir=>['-i',path.join(dir,'input.css'),'-o',path.join(dir,'out.css'),'-m'],dir=>path.join(dir,'out.css'),x=>mapped(x,'Tailwind'));
 }catch(e){output.push({framework:'Tailwind',error:'Install optional benchmark deps / CLI: '+e.message.split('\n')[0]})}
 try{
  const css=require.resolve('bootstrap/dist/css/bootstrap.min.css');
