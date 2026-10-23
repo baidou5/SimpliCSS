@@ -27,7 +27,7 @@ test('supports fractions and grid columns',()=>{
 test('Blade, Vue and JSX static class extraction',()=>{
  const text='<div class="flex p-4">{{ $text }}</div><div :class="dark:bg-ink"></div><p className="md:flex-row">';
  const found=extractClasses(text);
- assert.ok(found.has('flex'));assert.ok(found.has('dark:bg-ink'));assert.ok(found.has('md:flex-row'));
+ assert.ok(found.has('flex'));assert.ok(!found.has('dark:bg-ink'));assert.ok(found.has('md:flex-row'));
 });
 test('discovers project files using recursive content patterns',()=>{
  const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
@@ -61,4 +61,21 @@ test('dark and RTL combinations scope all selectors',()=>{
 });
 test('rejects dark overrides of unknown color keys',()=>{
  assert.throws(()=>compile({theme:{darkColors:{unknown:'red'}}}),/Invalid dark color/);
+});
+
+test('globs include only matching files and skip dependencies',()=>{
+ const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
+ const {expandContentFiles}=require('../lib/compiler.cjs');
+ const cwd=fs.mkdtempSync(path.join(os.tmpdir(),'sc-glob-'));
+ try{
+  for(const dir of ['resources/views/admin','resources/js','node_modules'])fs.mkdirSync(path.join(cwd,dir),{recursive:true});
+  for(const file of ['resources/views/a.blade.php','resources/views/admin/b.blade.php','resources/js/app.js','node_modules/ignore.blade.php'])fs.writeFileSync(path.join(cwd,file),'test');
+  const files=expandContentFiles(cwd,['resources/**/*.blade.php']).map(x=>path.relative(cwd,x));
+  assert.deepEqual(files.sort(),['resources/views/a.blade.php','resources/views/admin/b.blade.php'].sort());
+ }finally{fs.rmSync(cwd,{recursive:true,force:true})}
+});
+test('bound classes are not treated as safe static attributes',()=>{
+ const {extractClasses}=require('../lib/compiler.cjs');
+ const found=extractClasses('<div class="flex" :class="isActive ? green : red" v-bind:class="dynamic"></div>');
+ assert.deepEqual([...found],['flex']);
 });
