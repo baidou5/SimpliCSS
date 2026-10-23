@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 'use strict';
-// Minimal MCP JSON-RPC 2.0 server over stdio (Content-Length framing).
+// Minimal MCP JSON-RPC 2.0 server over stdio (newline-delimited JSON).
 const {manifest,validate}=require('../lib/ai-native.cjs');
 const {listComponents,getComponent,renderComponent}=require('../lib/component-registry.cjs');
 const {compile}=require('../lib/compiler.cjs');
@@ -50,20 +50,20 @@ function handle(message){
  }catch(e){return id===undefined?null:{jsonrpc:'2.0',id,error:{code:-32603,message:e.message}}}
 }
 function start(input=process.stdin,output=process.stdout){
- let buffer=Buffer.alloc(0);
- function send(response){if(response===null)return;const payload=Buffer.from(JSON.stringify(response));output.write('Content-Length: '+payload.length+'\r\n\r\n');output.write(payload)}
+ // MCP stdio transport uses one JSON-RPC message per UTF-8 line.
+ let pending='';
+ input.setEncoding('utf8');
  input.on('data',chunk=>{
-  buffer=Buffer.concat([buffer,chunk]);
-  while(true){
-   const headerEnd=buffer.indexOf('\r\n\r\n');if(headerEnd<0)break;
-   const header=buffer.subarray(0,headerEnd).toString();
-   const match=/(?:^|\r\n)Content-Length:\s*(\d+)/i.exec(header);
-   if(!match){buffer=Buffer.alloc(0);break}
-   const size=Number(match[1]);if(!Number.isSafeInteger(size)||size>1048576){buffer=Buffer.alloc(0);break}
-   if(buffer.length<headerEnd+4+size)break;
-   const body=buffer.subarray(headerEnd+4,headerEnd+4+size);
-   buffer=buffer.subarray(headerEnd+4+size);
-   try{send(handle(JSON.parse(body.toString('utf8'))))}catch(_){send({jsonrpc:'2.0',id:null,error:{code:-32700,message:'Parse error'}})}
+  pending+=chunk;
+  if(pending.length>1048576){pending='';return}
+  let cut;
+  while((cut=pending.indexOf('\n'))!==-1){
+   const line=pending.slice(0,cut).trim();pending=pending.slice(cut+1);
+   if(!line)continue;
+   let response;
+   try{response=handle(JSON.parse(line))}
+   catch(_){response={jsonrpc:'2.0',id:null,error:{code:-32700,message:'Parse error'}}}
+   if(response!==null)output.write(JSON.stringify(response)+'\n');
   }
  });
 }
