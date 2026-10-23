@@ -50,14 +50,15 @@ test('design tokens support font sizing, shadows and dark overrides',()=>{
  const result=compile({safelist:['text-2xl','shadow-md','bg-surface','dark:bg-surface'],theme:{darkColors:{surface:'#121212'}}});
  assert.equal(result.generated,4);
  assert.match(result.css,/--sc-font-2xl:1.5rem/);
- assert.match(result.css,/font-size:var\\(--sc-font-2xl\\)/);
- assert.match(result.css,/box-shadow:var\\(--sc-shadow-md\\)/);
+ assert.ok(result.css.includes('font-size:var(--sc-font-2xl)'));
+ assert.ok(result.css.includes('box-shadow:var(--sc-shadow-md)'));
  assert.match(result.css,/--sc-surface:#121212/);
 });
 test('dark and RTL combinations scope all selectors',()=>{
  const result=compile({safelist:['rtl:dark:bg-primary']});
- assert.match(result.css,/\\[dir="rtl"\\] \\.dark/);
- assert.match(result.css,/\\[dir="rtl"\\] \\[data-theme="dark"\\]/);
+ assert.ok(result.css.includes('[dir="rtl"].dark '));
+ assert.ok(result.css.includes('[dir="rtl"] .dark '));
+ assert.ok(result.css.includes('[dir="rtl"] [data-theme="dark"] '));
 });
 test('rejects dark overrides of unknown color keys',()=>{
  assert.throws(()=>compile({theme:{darkColors:{unknown:'red'}}}),/Invalid dark color/);
