@@ -27,8 +27,8 @@ function evaluate(task,submission){
 }
 function baselineSubmission(task){return task.kind==='classes'?{classes:task.required}:{html:renderComponent(task.component,task.props)}}
 function run(submissions={}){
- const results=suite.tasks.map(task=>({id:task.id,kind:task.kind,...evaluate(task,submissions[task.id]||baselineSubmission(task))}));
- return {schemaVersion:suite.schemaVersion,source:Object.keys(submissions).length?'submitted-output-with-baseline-fallback':'simplicss-reference-baseline',total:results.length,passed:results.filter(x=>x.passed).length,results};
+ const results=suite.tasks.map(task=>{const supplied=Object.hasOwn(submissions,task.id);return {id:task.id,kind:task.kind,referenceFallback:!supplied,...evaluate(task,supplied?submissions[task.id]:baselineSubmission(task))}});
+ return {schemaVersion:suite.schemaVersion,source:Object.keys(submissions).length?'submitted-output-with-baseline-fallback':'simplicss-reference-baseline',total:results.length,submitted:results.filter(x=>!x.referenceFallback).length,passed:results.filter(x=>x.passed).length,submittedPassed:results.filter(x=>!x.referenceFallback&&x.passed).length,results};
 }
 if(require.main===module){
  try{
