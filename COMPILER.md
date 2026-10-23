@@ -21,3 +21,11 @@ Example:
 ```json
 {"content":["resources/**/*.blade.php","resources/**/*.js","src/**/*.vue","src/**/*.tsx"],"output":"dist/simplicss.generated.css","safelist":["hidden","md:flex-row"]}
 ```
+
+## Design tokens and themes
+The compiler now supports `fontSizes`, `shadows`, and optional `darkColors` in `theme`. Utilities include `text-2xl`, `shadow-md`, and dark-aware semantic colors such as `bg-surface`. Dark overrides apply under `.dark` and `[data-theme="dark"]`. These are experimental and do not modify the static CSS bundle.
+
+Example theme:
+```json
+{"theme":{"colors":{"brand":"#4f46e5"},"darkColors":{"surface":"#101828","ink":"#f9fafb"},"fontSizes":{"hero":"3rem"},"shadows":{"card":"0 8px 24px rgb(0 0 0 / 0.1)"}}}
+```
