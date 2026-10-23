@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0",
+  "policy": {
+    "attempts": 1,
+    "temperature": 0,
+    "identicalTaskSemantics": true,
+    "modelVersionMustBeRecorded": true,
+    "frameworkVersionMustBeRecorded": true,
+    "missingSubmissionsFail": true
+  },
+  "frameworks": [
+    "simplicss",
+    "tailwind",
+    "bootstrap"
+  ],
+  "tasks": [
+    {
+      "id": "dashboard",
+      "prompt": "Build a responsive dashboard with navigation, three statistic cards, and a primary action. Use semantic HTML and the selected framework; do not use inline styling.",
+      "criteria": {
+        "tags": [
+          "main",
+          "nav",
+          "button"
+        ],
+        "minCards": 3
+      }
+    },
+    {
+      "id": "contact-form",
+      "prompt": "Build a contact form with labeled name, email and message fields, and a submit button; ensure accessible labels and keyboard use.",
+      "criteria": {
+        "tags": [
+          "form",
+          "label",
+          "input",
+          "textarea",
+          "button"
+        ],
+        "minLabels": 3
+      }
+    },
+    {
+      "id": "rtl-dark",
+      "prompt": "Build a responsive RTL settings panel with a dark theme, a heading, a toggle and save action.",
+      "criteria": {
+        "tags": [
+          "section",
+          "button"
+        ],
+        "rtl": true,
+        "dark": true
+      }
+    }
+  ]
+}
