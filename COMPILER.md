@@ -13,3 +13,19 @@ Copy `simplicss.config.example.json` to `simplicss.config.json` and list explici
 Literal `class` and `className` attributes are scanned. Dynamically constructed tokens, template strings, Blade interpolations and bound attributes require a `safelist` entry. `dark:` uses `.dark` or `[data-theme="dark"]`; `rtl:` uses `[dir="rtl"]`.
 
 Experimental foundation only: glob scanning, variant composition, plugins, source maps and performance benchmarking are planned, not implemented. Use trusted theme configuration.
+
+## Framework scanning
+`content` supports explicit file paths, folders and recursive glob-style paths such as `resources/**/*.blade.php`, `src/**/*.vue` and `app/**/*.tsx`. Scanner excludes `node_modules`, `vendor`, `.git`, `dist`, `coverage` and build directories. Static class and className values are extracted. Dynamic Blade/Vue/JSX expressions should be included in `safelist`; there is no AST parser yet.
+
+Example:
+```json
+{"content":["resources/**/*.blade.php","resources/**/*.js","src/**/*.vue","src/**/*.tsx"],"output":"dist/simplicss.generated.css","safelist":["hidden","md:flex-row"]}
+```
+
+## Design tokens and themes
+The compiler now supports `fontSizes`, `shadows`, and optional `darkColors` in `theme`. Utilities include `text-2xl`, `shadow-md`, and dark-aware semantic colors such as `bg-surface`. Dark overrides apply under `.dark` and `[data-theme="dark"]`. These are experimental and do not modify the static CSS bundle.
+
+Example theme:
+```json
+{"theme":{"colors":{"brand":"#4f46e5"},"darkColors":{"surface":"#101828","ink":"#f9fafb"},"fontSizes":{"hero":"3rem"},"shadows":{"card":"0 8px 24px rgb(0 0 0 / 0.1)"}}}
+```

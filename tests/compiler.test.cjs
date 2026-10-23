@@ -23,3 +23,60 @@ test('supports fractions and grid columns',()=>{
  const r=compile({safelist:['w-1/2','grid-cols-12']});
  assert.match(r.css,/width:50%/);assert.match(r.css,/repeat\(12,minmax\(0,1fr\)\)/);
 });
+
+test('Blade, Vue and JSX static class extraction',()=>{
+ const text='<div class="flex p-4">{{ $text }}</div><div :class="dark:bg-ink"></div><p className="md:flex-row">';
+ const found=extractClasses(text);
+ assert.ok(found.has('flex'));assert.ok(!found.has('dark:bg-ink'));assert.ok(found.has('md:flex-row'));
+});
+test('discovers project files using recursive content patterns',()=>{
+ const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+ const {expandContentFiles,build}=require('../lib/compiler.cjs');
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'simplicss-'));
+ try{
+  fs.mkdirSync(path.join(root,'resources','views'),{recursive:true});
+  fs.mkdirSync(path.join(root,'node_modules'),{recursive:true});
+  fs.writeFileSync(path.join(root,'resources','views','home.blade.php'),'<div class="flex gap-4"></div>');
+  fs.writeFileSync(path.join(root,'node_modules','ignore.js'),'<p class="hidden">');
+  fs.writeFileSync(path.join(root,'simplicss.config.json'),JSON.stringify({content:['resources/**/*.blade.php'],output:'dist/out.css'}));
+  assert.equal(expandContentFiles(root,['resources/**/*.blade.php']).length,1);
+  const result=build({cwd:root});
+  assert.equal(result.filesScanned,1);assert.equal(result.generated,2);
+  assert.match(fs.readFileSync(result.output,'utf8'),/display:flex/);
+ }finally{fs.rmSync(root,{recursive:true,force:true});}
+});
+
+test('design tokens support font sizing, shadows and dark overrides',()=>{
+ const result=compile({safelist:['text-2xl','shadow-md','bg-surface','dark:bg-surface'],theme:{darkColors:{surface:'#121212'}}});
+ assert.equal(result.generated,4);
+ assert.match(result.css,/--sc-font-2xl:1.5rem/);
+ assert.ok(result.css.includes('font-size:var(--sc-font-2xl)'));
+ assert.ok(result.css.includes('box-shadow:var(--sc-shadow-md)'));
+ assert.match(result.css,/--sc-surface:#121212/);
+});
+test('dark and RTL combinations scope all selectors',()=>{
+ const result=compile({safelist:['rtl:dark:bg-primary']});
+ assert.ok(result.css.includes('[dir="rtl"].dark '));
+ assert.ok(result.css.includes('[dir="rtl"] .dark '));
+ assert.ok(result.css.includes('[dir="rtl"] [data-theme="dark"] '));
+});
+test('rejects dark overrides of unknown color keys',()=>{
+ assert.throws(()=>compile({theme:{darkColors:{unknown:'red'}}}),/Invalid dark color/);
+});
+
+test('globs include only matching files and skip dependencies',()=>{
+ const fs=require('node:fs'),path=require('node:path'),os=require('node:os');
+ const {expandContentFiles}=require('../lib/compiler.cjs');
+ const cwd=fs.mkdtempSync(path.join(os.tmpdir(),'sc-glob-'));
+ try{
+  for(const dir of ['resources/views/admin','resources/js','node_modules'])fs.mkdirSync(path.join(cwd,dir),{recursive:true});
+  for(const file of ['resources/views/a.blade.php','resources/views/admin/b.blade.php','resources/js/app.js','node_modules/ignore.blade.php'])fs.writeFileSync(path.join(cwd,file),'test');
+  const files=expandContentFiles(cwd,['resources/**/*.blade.php']).map(x=>path.relative(cwd,x));
+  assert.deepEqual(files.sort(),['resources/views/a.blade.php','resources/views/admin/b.blade.php'].sort());
+ }finally{fs.rmSync(cwd,{recursive:true,force:true})}
+});
+test('bound classes are not treated as safe static attributes',()=>{
+ const {extractClasses}=require('../lib/compiler.cjs');
+ const found=extractClasses('<div class="flex" :class="isActive ? green : red" v-bind:class="dynamic"></div>');
+ assert.deepEqual([...found],['flex']);
+});
