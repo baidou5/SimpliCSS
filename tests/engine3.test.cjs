@@ -44,3 +44,17 @@ test('malformed and unsafe values are rejected',()=>{
 test('unknown utility is reported without throwing',()=>{
  assert.deepEqual(compile({safelist:['nonexistent-thing']}).unknown,['nonexistent-thing']);
 });
+
+test('typed arbitrary text and border lengths are not color properties',()=>{
+ const r=compile({safelist:['text-[18px]','text-[clamp(1rem,2vw,2rem)]','border-[2px]','text-[#ffffff]']});
+ assert.equal(r.generated,4);
+ assert.ok(r.css.includes('font-size:18px'));
+ assert.ok(r.css.includes('font-size:clamp(1rem,2vw,2rem)'));
+ assert.ok(r.css.includes('border-width:2px'));
+ assert.ok(r.css.includes('color:#ffffff'));
+});
+test('dark and direction on the same ancestor remain matchable',()=>{
+ const css=parseToken('dark:rtl:bg-[#222222]',makeTheme());
+ assert.ok(css.includes('[dir="rtl"].dark '));
+ assert.ok(css.includes('[dir="rtl"][data-theme="dark"] '));
+});
