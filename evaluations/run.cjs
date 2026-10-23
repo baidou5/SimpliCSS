@@ -26,14 +26,17 @@ function evaluate(task,submission){
  return {passed:failures.length===0,checks,failures};
 }
 function baselineSubmission(task){return task.kind==='classes'?{classes:task.required}:{html:renderComponent(task.component,task.props)}}
-function run(submissions={}){
- const results=suite.tasks.map(task=>{const supplied=Object.hasOwn(submissions,task.id);return {id:task.id,kind:task.kind,referenceFallback:!supplied,...evaluate(task,supplied?submissions[task.id]:baselineSubmission(task))}});
- return {schemaVersion:suite.schemaVersion,source:Object.keys(submissions).length?'submitted-output-with-baseline-fallback':'simplicss-reference-baseline',total:results.length,submitted:results.filter(x=>!x.referenceFallback).length,passed:results.filter(x=>x.passed).length,submittedPassed:results.filter(x=>!x.referenceFallback&&x.passed).length,results};
+function run(submissions={},options={}){
+ const strict=options.strict===true;
+ const results=suite.tasks.map(task=>{const supplied=Object.hasOwn(submissions,task.id);return {id:task.id,kind:task.kind,referenceFallback:!supplied,...(strict&&!supplied?{passed:false,checks:[],failures:['MISSING_SUBMISSION']}:evaluate(task,supplied?submissions[task.id]:baselineSubmission(task)))}});
+ return {schemaVersion:suite.schemaVersion,strict,source:strict?'external-submissions-strict':Object.keys(submissions).length?'submitted-output-with-baseline-fallback':'simplicss-reference-baseline',total:results.length,submitted:results.filter(x=>!x.referenceFallback).length,passed:results.filter(x=>x.passed).length,submittedPassed:results.filter(x=>!x.referenceFallback&&x.passed).length,results};
 }
 if(require.main===module){
  try{
-  const file=process.argv[2],submissions=file?JSON.parse(fs.readFileSync(path.resolve(file),'utf8')):{};
-  const report=run(submissions);
+  const args=process.argv.slice(2),strict=args.includes('--strict'),file=args.find(x=>x!=='--strict');
+  if(strict&&!file)throw Error('--strict requires a submissions JSON file');
+  const submissions=file?JSON.parse(fs.readFileSync(path.resolve(file),'utf8')):{};
+  const report=run(submissions,{strict});
   process.stdout.write(JSON.stringify(report,null,2)+'\n');
   if(report.passed!==report.total)process.exitCode=2;
  }catch(error){process.stderr.write('Evaluation: '+error.message+'\n');process.exitCode=1}
