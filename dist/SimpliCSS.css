@@ -180,26 +180,26 @@
 
 /* Responsive utilities: mobile-first (min-width only) */
 @media (min-width: 640px) {
-  .sm\\:w-1 { width: 10%; }
-  .sm\\:w-2 { width: 20%; }
-  .sm\\:w-full { width: 100%; }
-  .sm\\:w-half { width: 50%; }
-  .sm\\:text-lg { font-size: 18px; }
-  .sm\\:flex-row { flex-direction: row; }
-  .sm\\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sm\:w-1 { width: 10%; }
+  .sm\:w-2 { width: 20%; }
+  .sm\:w-full { width: 100%; }
+  .sm\:w-half { width: 50%; }
+  .sm\:text-lg { font-size: 18px; }
+  .sm\:flex-row { flex-direction: row; }
+  .sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (min-width: 768px) {
-  .md\\:w-full { width: 100%; }
-  .md\\:w-half { width: 50%; }
-  .md\\:text-xl { font-size: 22px; }
-  .md\\:flex-row { flex-direction: row; }
-  .md\\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .md\:w-full { width: 100%; }
+  .md\:w-half { width: 50%; }
+  .md\:text-xl { font-size: 22px; }
+  .md\:flex-row { flex-direction: row; }
+  .md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (min-width: 1024px) {
-  .lg\\:w-full { width: 100%; }
-  .lg\\:w-quarter { width: 25%; }
-  .lg\\:text-2xl { font-size: 26px; }
-  .lg\\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .lg\:w-full { width: 100%; }
+  .lg\:w-quarter { width: 25%; }
+  .lg\:text-2xl { font-size: 26px; }
+  .lg\:grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
