@@ -1,0 +1,16 @@
+/* Optional interactive SimpliCSS UI components */
+.sc-dialog{border:1px solid var(--sc-ui-border,#cbd5e1);border-radius:var(--sc-ui-radius,.75rem);background:var(--sc-surface,#fff);color:var(--sc-ink,#0f172a);padding:0;max-width:min(32rem,calc(100vw - 2rem));width:100%;box-shadow:0 20px 60px #0004}
+.sc-dialog::backdrop{background:rgb(2 6 23 / .65)}
+.sc-dialog-body{padding:1.5rem}
+.sc-tabs{display:flex;gap:.25rem;border-block-end:1px solid var(--sc-ui-border,#cbd5e1)}
+.sc-tab{font:inherit;cursor:pointer;padding:.75rem 1rem;border:0;background:transparent;color:var(--sc-ink,#0f172a);border-block-end:2px solid transparent}
+.sc-tab[aria-selected="true"]{border-block-end-color:var(--sc-primary,#2563eb);font-weight:600}
+.sc-tab:focus-visible,.sc-menu-trigger:focus-visible,.sc-menu a:focus-visible,.sc-menu button:focus-visible{outline:3px solid var(--sc-ui-focus,#93c5fd);outline-offset:2px}
+.sc-tab:disabled{opacity:.5;cursor:not-allowed}
+.sc-tab-panel{padding-block:1rem}
+.sc-menu-wrap{position:relative;display:inline-block}
+.sc-menu{position:absolute;inset-block-start:calc(100% + .375rem);inset-inline-start:0;min-width:12rem;padding:.25rem;border:1px solid var(--sc-ui-border,#cbd5e1);border-radius:.5rem;background:var(--sc-surface,#fff);color:var(--sc-ink,#0f172a);box-shadow:var(--sc-shadow-md,0 8px 20px #0002);z-index:50}
+.sc-menu a,.sc-menu button{display:block;width:100%;padding:.625rem .75rem;border:0;border-radius:.25rem;background:transparent;color:inherit;text-align:start;text-decoration:none;font:inherit;cursor:pointer}
+.sc-menu a:hover,.sc-menu button:hover{background:var(--sc-ui-muted,#e2e8f0)}
+.sc-menu[hidden],.sc-tab-panel[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){.sc-dialog,.sc-menu{scroll-behavior:auto}}
