@@ -23,3 +23,25 @@ test('supports fractions and grid columns',()=>{
  const r=compile({safelist:['w-1/2','grid-cols-12']});
  assert.match(r.css,/width:50%/);assert.match(r.css,/repeat\(12,minmax\(0,1fr\)\)/);
 });
+
+test('Blade, Vue and JSX static class extraction',()=>{
+ const text='<div class="flex p-4">{{ $text }}</div><div :class="dark:bg-ink"></div><p className="md:flex-row">';
+ const found=extractClasses(text);
+ assert.ok(found.has('flex'));assert.ok(found.has('dark:bg-ink'));assert.ok(found.has('md:flex-row'));
+});
+test('discovers project files using recursive content patterns',()=>{
+ const fs=require('node:fs'),os=require('node:os'),path=require('node:path');
+ const {expandContentFiles,build}=require('../lib/compiler.cjs');
+ const root=fs.mkdtempSync(path.join(os.tmpdir(),'simplicss-'));
+ try{
+  fs.mkdirSync(path.join(root,'resources','views'),{recursive:true});
+  fs.mkdirSync(path.join(root,'node_modules'),{recursive:true});
+  fs.writeFileSync(path.join(root,'resources','views','home.blade.php'),'<div class="flex gap-4"></div>');
+  fs.writeFileSync(path.join(root,'node_modules','ignore.js'),'<p class="hidden">');
+  fs.writeFileSync(path.join(root,'simplicss.config.json'),JSON.stringify({content:['resources/**/*.blade.php'],output:'dist/out.css'}));
+  assert.equal(expandContentFiles(root,['resources/**/*.blade.php']).length,1);
+  const result=build({cwd:root});
+  assert.equal(result.filesScanned,1);assert.equal(result.generated,2);
+  assert.match(fs.readFileSync(result.output,'utf8'),/display:flex/);
+ }finally{fs.rmSync(root,{recursive:true,force:true});}
+});
