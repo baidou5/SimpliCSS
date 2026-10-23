@@ -7,6 +7,7 @@
 ```bash
 git clone https://github.com/baidou5/SimpliCSS.git
 cd SimpliCSS
+git checkout feat/ai-integration-kit-v1
 npm ci
 node bin/simplicss.cjs manifest
 node bin/simplicss.cjs components
