@@ -11,11 +11,11 @@ test('sample MCP configuration is parseable',()=>{
  assert.equal(obj.mcpServers.simplicss.command,'node');
  assert.ok(obj.mcpServers.simplicss.args[0].endsWith('bin/simplicss-mcp.cjs'));
 });
-test('package metadata matches checked-in GPL license',()=>{
+test('package metadata matches checked-in MIT license',()=>{
  const license=fs.readFileSync(path.join(root,'LICENSE'),'utf8');
  const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));
- assert.match(license,/GNU GENERAL PUBLIC LICENSE/);
- assert.equal(pkg.license,'GPL-3.0-only');
+ assert.match(license,/MIT License/);
+ assert.equal(pkg.license,'MIT');
  assert.equal(pkg.name,'simplicss');
  assert.equal(pkg.main,'./index.cjs');
 });
