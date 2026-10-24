@@ -1,0 +1,35 @@
+name: Release readiness and npm identity
+on:
+  push:
+    branches: ['feat/public-ai-launch-kit']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  registry-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect npm package name (read-only)
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=$(curl --retry 2 --connect-timeout 10 --max-time 30 -sS -o /tmp/npm-package.json -w '%{http_code}' https://registry.npmjs.org/simplicss)
+          echo "npm registry status: $status"
+          if [ "$status" = "404" ]; then
+            echo "No public package metadata at the queried registry endpoint; NOT a guarantee of name ownership or publishability."
+          elif [ "$status" = "200" ]; then
+            node -e 'const f=require("/tmp/npm-package.json"); console.log(JSON.stringify({name:f.name,latest:f["dist-tags"]?.latest,maintainers:f.maintainers?.map(m=>m.name)||[]}))'
+            echo "A public package currently exists; do not overwrite or assume ownership."
+          else
+            echo "Registry availability inconclusive ($status)"
+          fi
+      - name: License declaration check
+        run: |
+          node -e 'const p=require("./package.json");if(p.license!=="GPL-3.0-only")process.exit(1);console.log("Current declared license:",p.license)'
+          head -n 3 LICENSE
+      - name: Verify source entrypoint
+        run: node -e 'const api=require("./index.cjs");for(const n of ["compile","manifest","validate","renderComponent"])if(typeof api[n]!=="function")throw Error(n)'
