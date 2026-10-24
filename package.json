@@ -1,6 +1,6 @@
 {
   "name": "simplicss",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "SimpliCSS is a lightweight, utility-first CSS framework designed to simplify the development of modern, responsive websites. It aims to be an easy-to-use alternative to more complex frameworks, offering a streamlined and more intuitive approach to styling. While inspired by popular frameworks, SimpliCSS focuses on simplicity, efficiency, and flexibility.",
   "main": "./index.cjs",
   "scripts": {
@@ -11,7 +11,8 @@
     "build:utilities": "node bin/simplicss.cjs build",
     "check:size": "node scripts/check-size.cjs",
     "benchmark": "node benchmarks/compiler.cjs",
-    "check:pack": "npm pack --dry-run --json"
+    "check:pack": "npm pack --dry-run --json",
+    "prepublishOnly": "npm test && npm run build && node scripts/check-package.cjs"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
@@ -40,5 +41,25 @@
     "ENGINE3.md",
     "MCP.md",
     "simplicss.config.example.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/baidou5/SimpliCSS.git"
+  },
+  "homepage": "https://github.com/baidou5/SimpliCSS#readme",
+  "bugs": {
+    "url": "https://github.com/baidou5/SimpliCSS/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "keywords": [
+    "css",
+    "utility-first",
+    "ai",
+    "mcp",
+    "design-system",
+    "compiler"
   ]
 }
