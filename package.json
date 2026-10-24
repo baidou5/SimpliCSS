@@ -1,8 +1,8 @@
 {
-  "name": "SimpliCSS",
+  "name": "simplicss",
   "version": "1.0.3",
   "description": "SimpliCSS is a lightweight, utility-first CSS framework designed to simplify the development of modern, responsive websites. It aims to be an easy-to-use alternative to more complex frameworks, offering a streamlined and more intuitive approach to styling. While inspired by popular frameworks, SimpliCSS focuses on simplicity, efficiency, and flexibility.",
-  "main": "index.js",
+  "main": "./index.cjs",
   "scripts": {
     "build:css": "postcss src/SimpliCSS.css -o dist/SimpliCSS.css",
     "watch:css": "postcss src/SimpliCSS.css -o dist/SimpliCSS.css --watch",
@@ -10,7 +10,8 @@
     "build": "npm run build:css",
     "build:utilities": "node bin/simplicss.cjs build",
     "check:size": "node scripts/check-size.cjs",
-    "benchmark": "node benchmarks/compiler.cjs"
+    "benchmark": "node benchmarks/compiler.cjs",
+    "check:pack": "npm pack --dry-run --json"
   },
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^6.0.0",
@@ -19,8 +20,25 @@
     "postcss-cli": "^11.0.0"
   },
   "author": "Abdellah Baidou",
-  "license": "MIT License",
+  "license": "GPL-3.0-only",
   "bin": {
-    "simplicss": "bin/simplicss.cjs"
-  }
+    "simplicss": "bin/simplicss.cjs",
+    "simplicss-mcp": "bin/simplicss-mcp.cjs"
+  },
+  "files": [
+    "index.cjs",
+    "lib",
+    "bin",
+    "dist",
+    "src",
+    "README.md",
+    "LICENSE",
+    "AGENTS.md",
+    "AI_INTEGRATION.md",
+    "AI_NATIVE.md",
+    "COMPONENT_REGISTRY.md",
+    "ENGINE3.md",
+    "MCP.md",
+    "simplicss.config.example.json"
+  ]
 }
