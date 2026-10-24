@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "1.0",
+  "description": "Deterministic evaluation tasks for model-generated SimpliCSS output. Not an AI model benchmark by itself.",
+  "tasks": [
+    {
+      "id": "dashboard-utilities",
+      "kind": "classes",
+      "description": "Responsive dashboard header with three-column grid",
+      "required": [
+        "flex",
+        "items-center",
+        "justify-between",
+        "grid",
+        "md:grid-cols-3",
+        "gap-4",
+        "p-4",
+        "bg-primary",
+        "text-surface"
+      ]
+    },
+    {
+      "id": "accessible-button",
+      "kind": "component",
+      "component": "button",
+      "props": {
+        "label": "Save changes",
+        "variant": "primary",
+        "type": "submit"
+      },
+      "requiredTags": [
+        "button"
+      ],
+      "requiredAttributes": {
+        "type": "submit"
+      },
+      "requiredClasses": [
+        "sc-btn",
+        "sc-btn-primary"
+      ]
+    },
+    {
+      "id": "labeled-email",
+      "kind": "component",
+      "component": "input",
+      "props": {
+        "label": "Email address",
+        "name": "email",
+        "type": "email",
+        "required": true
+      },
+      "requiredTags": [
+        "label",
+        "input"
+      ],
+      "requiredAttributes": {
+        "type": "email",
+        "name": "email"
+      },
+      "requiredClasses": [
+        "sc-label",
+        "sc-input"
+      ]
+    },
+    {
+      "id": "safe-card",
+      "kind": "component",
+      "component": "card",
+      "props": {
+        "title": "Overview",
+        "body": "Monthly revenue"
+      },
+      "requiredTags": [
+        "article",
+        "h2"
+      ],
+      "requiredClasses": [
+        "sc-card"
+      ]
+    },
+    {
+      "id": "dark-rtl",
+      "kind": "classes",
+      "description": "Dark and RTL utility composition",
+      "required": [
+        "dark:rtl:bg-primary",
+        "rtl:ms-4",
+        "focus-visible:rounded-lg"
+      ]
+    },
+    {
+      "id": "arbitrary-values",
+      "kind": "classes",
+      "description": "Allowed custom width and color",
+      "required": [
+        "w-[320px]",
+        "bg-[#0f172a]",
+        "p-[1.5rem]"
+      ]
+    }
+  ]
+}

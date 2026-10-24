@@ -3,11 +3,15 @@
 const {build}=require('../lib/compiler.cjs');
 const {manifest,validate}=require('../lib/ai-native.cjs');
 const fs=require('node:fs');
+const {listComponents,getComponent,renderComponent}=require('../lib/component-registry.cjs');
 try{
  const args=process.argv.slice(2);
- if(args.includes('--help')||args.includes('-h')){console.log('Usage: simplicss build [config.json] | manifest [config.json] | validate [config.json]');process.exit(0);}
- if(!['build','manifest','validate'].includes(args[0]))throw Error('Use: simplicss build|manifest|validate [config-file]');
- if(args[0]==='build'){
+ if(args.includes('--help')||args.includes('-h')){console.log('Usage: simplicss build [config.json] | manifest [config.json] | validate [config.json] | components | component <name> | render <name> <json-props>');process.exit(0);}
+ if(!['build','manifest','validate','components','component','render'].includes(args[0]))throw Error('Use: simplicss build|manifest|validate|components|component|render');
+ if(args[0]==='components')console.log(JSON.stringify(listComponents(),null,2));
+ else if(args[0]==='component')console.log(JSON.stringify(getComponent(args[1]),null,2));
+ else if(args[0]==='render')console.log(renderComponent(args[1],JSON.parse(args[2]||'{}')));
+ else if(args[0]==='build'){
   const out=build({configFile:args[1]||'simplicss.config.json'});
   console.log('Generated '+out.generated+' utility rules at '+out.output);
   if(out.unknown.length)console.warn('Unrecognized classes: '+out.unknown.join(', '));

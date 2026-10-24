@@ -24,3 +24,4 @@ jobs:
       - run: npm test
       - run: npm run check:size
       - run: npm run benchmark
+      - run: npm pack --dry-run
