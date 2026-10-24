@@ -1,5 +1,7 @@
 # SimpliCSS
 
+![SimpliCSS banner](https://raw.githubusercontent.com/baidou5/SimpliCSS/main/bgs.jpg)
+
 **AI-native, utility-first CSS for developers and coding agents.**
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
