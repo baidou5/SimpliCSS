@@ -6,7 +6,8 @@ Current state: **preview — not published as an officially adopted integration*
 - [x] Example local MCP configuration
 - [x] Independent evaluation brief for other AI coding models
 - [ ] Merge dependent feature branches into default branch after review
-- [x] Align npm license metadata with the existing GPL-3.0 license (no relicensing performed)
+- [x] Adopt MIT in LICENSE and npm metadata at the maintainer's request
+- [ ] Verify that all contributions and incorporated source can be distributed under MIT
 - [x] Normalize package identifier and fix the Node `main` entrypoint
 - [ ] Verify public npm name availability and reserve it before publication
 - [ ] Run supported client interoperability smoke tests for Claude, Gemini, Copilot and any ChatGPT environment explicitly supporting local MCP

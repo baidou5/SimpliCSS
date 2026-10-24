@@ -8,11 +8,9 @@ Check the canonical registry read-only with `npm view simplicss name version mai
 
 We do not publish `simplicss@1.0.3` without verifying ownership and the release history.
 
-## Licensing (requires maintainer review)
+## Licensing: MIT adopted by maintainer request
 
-The repository `LICENSE` contains GPLv3 and npm metadata says `GPL-3.0-only`; this is consistent with the existing legal file, not a new license grant.
-
-GNU GPLv3 permits commercial use, but redistributing GPL-covered code or a combined derivative work may carry source availability and license obligations. For a CSS framework intended to be bundled into commercial websites and AI-generated deliverables, these requirements deserve specialist review. Permissive options such as MIT or Apache-2.0 could lower downstream friction **only if all copyright holders approve and third-party code rights allow relicensing**. Do not assume the author is the sole copyright holder; do not change license files automatically.
+The current `LICENSE` and npm metadata now specify MIT. The standard MIT permission and copyright notices must accompany copies or substantial portions. This prospective change does not cancel any rights granted on previously distributed GPLv3 versions. Before publishing, audit the ownership and provenance of all contributions and third-party source to ensure every part can lawfully be distributed under MIT. Dependencies and bundled external assets may have their own terms.
 
 ## Publish gates
 
@@ -20,7 +18,7 @@ GNU GPLv3 permits commercial use, but redistributing GPL-covered code or a combi
 - [x] CI pack contents and MCP stdio subprocess tests.
 - [x] Public introduction, runnable source examples and agent instructions.
 - [ ] Confirm npm name ownership, package identity and reserve under maintainer account.
-- [ ] Review permissions and intended commercial/AI downstream redistribution.
+- [ ] Verify contributor permissions, third-party notices and intended redistribution under MIT.
 - [ ] Independently test Claude Code and Gemini CLI with actual model calls.
 - [ ] Audit browser compatibility/accessibility and fix release-blocking bugs.
 - [ ] Choose semver version/tag and publish via authenticated npm account.

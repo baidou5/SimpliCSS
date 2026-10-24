@@ -7,14 +7,13 @@
 ```bash
 git clone https://github.com/baidou5/SimpliCSS.git
 cd SimpliCSS
-git checkout feat/ai-integration-kit-v1
 npm ci
 node bin/simplicss.cjs manifest
 node bin/simplicss.cjs components
 npm test
 ```
 
-The AI-Native features developed on feature branches must reach the checked-out commit before these commands work. **Do not assume they are available on the repository's `main` branch yet.** For this kit, check out `feat/ai-integration-kit-v1` until integration is merged.
+The AI-Native modules and tooling are integrated into the repository's `main` branch.
 
 ## AI agent contract
 
@@ -55,4 +54,4 @@ Use `evaluations/comparison-tasks.json` and `evaluations/COMPARISON_PROTOCOL.md`
 
 ## Adoption readiness
 
-Before external submission: publish a tagged stable release; confirm GPL licensing suitability for intended adoption; verify npm name availability and package contents; run CI and a real MCP client smoke test; capture genuine model evaluation results. Integration instructions do not constitute an endorsement from any model vendor.
+Before external submission: publish a tagged stable release; verify MIT relicensing authority and third-party notices; verify npm name availability and package contents; run CI and a real MCP client smoke test; capture genuine model evaluation results. Integration instructions do not constitute an endorsement from any model vendor.

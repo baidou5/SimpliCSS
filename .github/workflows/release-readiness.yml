@@ -29,7 +29,7 @@ jobs:
           fi
       - name: License declaration check
         run: |
-          node -e 'const p=require("./package.json");if(p.license!=="GPL-3.0-only")process.exit(1);console.log("Current declared license:",p.license)'
+          node -e 'const p=require("./package.json");if(p.license!=="MIT")process.exit(1);console.log("Current declared license:",p.license)'
           head -n 3 LICENSE
       - name: Verify source entrypoint
         run: node -e 'const api=require("./index.cjs");for(const n of ["compile","manifest","validate","renderComponent"])if(typeof api[n]!=="function")throw Error(n)'
