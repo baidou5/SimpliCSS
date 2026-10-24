@@ -17,4 +17,4 @@ You are working in the SimpliCSS repository. Prefer evidence from the code over 
 - Component registry currently has button, card, input, and alert only.
 - Local MCP support is experimental. Do not claim approval, adoption, or partnership by any AI provider.
 - Do not claim performance or model-generation superiority without running equivalent benchmarks.
-- The checked-in LICENSE is GPL-3.0; package metadata currently differs. Do not publish or relicense without resolving that mismatch with the maintainer.
+- The checked-in LICENSE is GPL-3.0 and package metadata reflects it. Do not relicense or publish until the maintainer approves distribution and licensing implications.
