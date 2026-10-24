@@ -20,7 +20,7 @@
     "postcss-cli": "^11.0.0"
   },
   "author": "Abdellah Baidou",
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "bin": {
     "simplicss": "bin/simplicss.cjs",
     "simplicss-mcp": "bin/simplicss-mcp.cjs"
