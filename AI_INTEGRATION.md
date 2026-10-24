@@ -55,4 +55,4 @@ Use `evaluations/comparison-tasks.json` and `evaluations/COMPARISON_PROTOCOL.md`
 
 ## Adoption readiness
 
-Before external submission: publish a tagged stable release; resolve GPL license/package metadata conflict; verify npm naming and packaging; run CI and a real MCP client smoke test; capture genuine model evaluation results. Integration instructions do not constitute an endorsement from any model vendor.
+Before external submission: publish a tagged stable release; confirm GPL licensing suitability for intended adoption; verify npm name availability and package contents; run CI and a real MCP client smoke test; capture genuine model evaluation results. Integration instructions do not constitute an endorsement from any model vendor.
