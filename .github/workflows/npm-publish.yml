@@ -1,0 +1,39 @@
+name: Publish SimpliCSS to npm
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: "Must exactly match package.json version"
+        required: true
+        default: "1.0.4"
+      confirm:
+        description: "Enter PUBLISH to confirm public irreversible npm publication"
+        required: true
+permissions:
+  contents: read
+jobs:
+  publish:
+    if: ${{ inputs.confirm == 'PUBLISH' }}
+    runs-on: ubuntu-latest
+    environment: npm-publish
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Verify release identity
+        env:
+          EXPECTED_VERSION: ${{ inputs.release_version }}
+        run: |
+          node -e 'const p=require("./package.json");if(p.version!==process.env.EXPECTED_VERSION||p.name!=="simplicss"||p.license!=="MIT")process.exit(1)'
+      - name: Install, build and verify
+        run: |
+          npm ci
+          npm test
+          npm run build
+          node scripts/check-package.cjs
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
