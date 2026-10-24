@@ -26,3 +26,10 @@ jobs:
       - run: npm run benchmark
       - run: npm pack --dry-run
       - run: node scripts/check-package.cjs
+      - name: Inspect public npm namespace (read-only)
+        if: matrix.node-version == '22.x'
+        run: |
+          status=$(curl -sS --retry 2 --max-time 20 -o /tmp/npm-result.json -w '%{http_code}' https://registry.npmjs.org/simplicss) || status=network-error
+          echo "npm simplicss registry HTTP status: $status"
+          if [ "$status" = "200" ]; then node -e 'const p=require("/tmp/npm-result.json");console.log(JSON.stringify({name:p.name,latest:p["dist-tags"]?.latest,maintainers:p.maintainers?.map(x=>x.name)}))'; fi
+          if [ "$status" = "404" ]; then echo 'No public package metadata; name not reserved or guaranteed'; fi
