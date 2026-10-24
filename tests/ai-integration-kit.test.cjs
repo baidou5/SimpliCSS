@@ -11,10 +11,17 @@ test('sample MCP configuration is parseable',()=>{
  assert.equal(obj.mcpServers.simplicss.command,'node');
  assert.ok(obj.mcpServers.simplicss.args[0].endsWith('bin/simplicss-mcp.cjs'));
 });
-test('release checklist flags license conflict',()=>{
+test('package metadata matches checked-in GPL license',()=>{
  const license=fs.readFileSync(path.join(root,'LICENSE'),'utf8');
  const pkg=JSON.parse(fs.readFileSync(path.join(root,'package.json'),'utf8'));
  assert.match(license,/GNU GENERAL PUBLIC LICENSE/);
- assert.notEqual(pkg.license,'GPL-3.0-only');
- assert.match(fs.readFileSync(path.join(root,'INTEGRATION_READINESS.md'),'utf8'),/Resolve/);
+ assert.equal(pkg.license,'GPL-3.0-only');
+ assert.equal(pkg.name,'simplicss');
+ assert.equal(pkg.main,'./index.cjs');
+});
+
+test('package entrypoint exports AI tooling and CSS compiler',()=>{
+ const api=require('../');
+ for(const name of ['compile','build','manifest','validate','listComponents','renderComponent'])
+  assert.equal(typeof api[name],'function',name);
 });
